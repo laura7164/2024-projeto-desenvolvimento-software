@@ -16,7 +16,9 @@ Classe FuncoesEstoque
 - Função para adicionar produto (perguntar a quantidade do produto) 
 - Função para remover produto 
 - Função para listar produto 
-- Função para alterar preço do produto 
+- Função para alterar preço do produto
+
+Classe EstoqueController
  
 Classe MenuFuncionario 
 - [1] - Adicionar um funcionário 
@@ -36,6 +38,8 @@ Classe FuncoesFuncionario
 - Função gerar relatório 
 - Função exibir relatórios 
 
+Classe FuncionarioController
+
 Classe MenuCliente 
 - [1] - Adicionar um cliente 
 - [2] - Listar cliente 
@@ -45,7 +49,6 @@ Classe MenuCliente
 - [6] - Mostrar compras 
 
 Menu de compra 
-- 
 
 Classe FuncoesCliente 
 - Função adicionar cliente 
@@ -53,7 +56,9 @@ Classe FuncoesCliente
 - Função buscar cliente 
 - Função remover cliente 
 - Função registrar compra 
-- Função visualizar compra 
+- Função visualizar compra
+
+Classe ClienteController
 
 Classe Pessoa (abstrata) 
 - String nome 
@@ -106,7 +111,7 @@ Classe produto
 - Métodos get e set para os atributos
   
 Classe Compra 
--
+
  
 Interface Funcionario 
 - Função trabalhando(); 
