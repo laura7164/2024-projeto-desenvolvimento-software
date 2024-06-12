@@ -1,83 +1,46 @@
 import java.util.Scanner;
 
-public class MenuFuncionario {
+public class MenuEstoque {
 
     Scanner leitor = new Scanner(System.in);
-    private int opcao, opcao2; 
+    int opcao;
 
-    public void executarMenu() {
+    public void executarMenuEstoque() {
         do {
-            System.out.println("[1] Adicionar funcionário");
-            System.out.println("[2] Listar funcionários");
-            System.out.println("[3] Buscar funcionário");
-            System.out.println("[4] Remover funcionário");
-            System.out.println("[5] Atualizar funcionário");
+            System.out.println("[1] Adicionar produto");
+            System.out.println("[2] Listar produtos");
+            System.out.println("[3] Remover produto");
+            System.out.println("[4] Alterar preço do produto");
+            System.out.println("[5] Buscar produto");
             System.out.println("[6] Sair");
 
             System.out.print("Escolha uma opção: ");
             opcao = leitor.nextInt();
 
-            switch(opcao) {
-                case 1: 
-                    do {
-                        System.out.println("[1] Adicionar um caixa");
-                        System.out.println("[2] Adicionar um repositor"); 
-                        System.out.println("[3] Adicionar um gerente");
-                        System.out.println("[4] Sair");
+            switch(opcao){
+                case 1:
 
-                        System.out.print("Escolha uma opção: ");
-                        opcao2 = leitor.nextInt();
-
-                        switch(opcao2) {
-                            case 1:
-                                
-                                break;
-
-                            case 2:
-                                
-                                break;
-
-                            case 3:
-                                
-                                break;
-
-                            case 4:
-                                System.out.println(">> Saindo");
-                                break;
-
-                            default:
-                                System.out.println(">> Opcao invalida");
-                                break;
-                        }
-                    } while(opcao2 != 4);
-                    break; 
-
+                    break;
                 case 2:
-                    
-                    break;
 
+                    break;
                 case 3:
-                    
-                    break;
 
+                    break;
                 case 4:
-                    
-                    break;
 
+                    break;
                 case 5:
-                    
-                    break;
 
+                    break;
                 case 6:
-                    System.out.println(">> Saindo");
+                    System.out.println(">> Saindo do sistema...");
                     break;
-
                 default:
-                    System.out.println(">> Opcao invalida");
+                    System.out.println(">> Opção inválida...");
                     break;
             }
         } while(opcao != 6);
-
         
     }
 }
