@@ -8,7 +8,7 @@ public class Cliente extends Pessoa implements InterfaceCliente {
         super(nome);
         this.cpf = cpf;
         this.telefone = telefone;
-        this.cartaoFidelidade = cartaoFidelidade;
+        this.cartaoFidelidade = 0;
     }
     
     public String getCpf() {
