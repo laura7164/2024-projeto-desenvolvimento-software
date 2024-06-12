@@ -12,13 +12,11 @@ Classe MenuEstoque
 - [3] - Listar Produtos 
 - [4] - Alterar preço de um Produto 
  
-Classe FuncoesEstoque 
+Classe EstoqueController
 - Função para adicionar produto (perguntar a quantidade do produto) 
 - Função para remover produto 
 - Função para listar produto 
 - Função para alterar preço do produto
-
-Classe EstoqueController
  
 Classe MenuFuncionario 
 - [1] - Adicionar um funcionário 
@@ -30,15 +28,13 @@ Classe MenuFuncionario
 - [4] - Remover funcionário 
 - [5] - Atualizar funcionário 
 
-Classe FuncoesFuncionario 
+Classe FuncionarioController 
 - Função adicionar funcionário 
 - Função listar funcionários 
 - Função buscar funcionário 
 - Função remover funcionário 
 - Função gerar relatório 
 - Função exibir relatórios 
-
-Classe FuncionarioController
 
 Classe MenuCliente 
 - [1] - Adicionar um cliente 
@@ -49,16 +45,19 @@ Classe MenuCliente
 - [6] - Mostrar compras 
 
 Menu de compra 
+- [1] Sabão em pó - R$ 33,16
+- [2] Arroz - R$ 9,90
+- [3] Feijão - R$ 8,72
+- [4] Refrigerante - R$ 12,00
+- [5] Salgadinho - R$ 6,50
 
-Classe FuncoesCliente 
+Classe ClienteController
 - Função adicionar cliente 
 - Função listar clientes 
 - Função buscar cliente 
 - Função remover cliente 
 - Função registrar compra 
 - Função visualizar compra
-
-Classe ClienteController
 
 Classe Pessoa (abstrata) 
 - String nome 
