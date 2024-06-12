@@ -46,7 +46,7 @@ public class Caixa extends Funcionario {
         return getStatusCaixa();
     }
 
-    public void registrarVenda() {
+    public void registrarCompra() {
         //
     }
 
