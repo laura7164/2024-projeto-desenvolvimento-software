@@ -38,10 +38,10 @@ public class MenuCliente {
 
                     break;
                 case 7:
-                    System.out.println(">> Saindo do sistema");
+                    System.out.println(">> Saindo do sistema...");
                     break;
                 default:
-                    System.out.println(">> Opção inválida");
+                    System.out.println(">> Opção inválida...");
                     break;
             }
            
