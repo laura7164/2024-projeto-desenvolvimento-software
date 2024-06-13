@@ -28,10 +28,6 @@ public class Repositor extends Funcionario {
         this.produtosRepostos = produtosRepostos;
     }
 
-    public void reporProduto() {
-        //
-    }
-
     @Override
     public void exibirInfo() {
         System.out.println("----------------------------");
@@ -41,16 +37,6 @@ public class Repositor extends Funcionario {
         System.out.println("Setor: " + getSetor());
         System.out.println("Quantidade de produtos repostos: " + getProdutosRepostos());
         System.out.println("----------------------------");
-    }
-
-    @Override
-    public void baterPontoEntrada() {
-        System.out.println("Batendo ponto de entrada");
-    }
-
-    @Override
-    public void baterPontoSaida() {
-        System.out.println("Batendo ponto de saida");
     }
     
 }
