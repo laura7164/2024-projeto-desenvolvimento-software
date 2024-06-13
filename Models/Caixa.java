@@ -48,10 +48,6 @@ public class Caixa extends Funcionario {
         return getStatusCaixa();
     }
 
-    public void registrarCompra() {
-        //
-    }
-
     @Override
     public void exibirInfo() {
         System.out.println("----------------------------");
@@ -61,16 +57,6 @@ public class Caixa extends Funcionario {
         System.out.println("Turno: " + getTurno());
         System.out.println("Número do caixa: " + getNumeroCaixa());
         System.out.println("----------------------------");
-    }
-
-    @Override
-    public void baterPontoEntrada() {
-        System.out.println("Batendo ponto de entrada");
-    }
-
-    @Override
-    public void baterPontoSaida() {
-        System.out.println("Batendo ponto de saida");
     }
 
 }
