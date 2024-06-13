@@ -44,13 +44,6 @@ Classe MenuCliente
 - [5] - Realizar uma compra 
 - [6] - Mostrar compras 
 
-Menu de compra 
-- [1] Sabão em pó - R$ 33,16
-- [2] Arroz - R$ 9,90
-- [3] Feijão - R$ 8,72
-- [4] Refrigerante - R$ 12,00
-- [5] Salgadinho - R$ 6,50
-
 Classe ClienteController
 - Função adicionar cliente 
 - Função listar clientes 
@@ -115,6 +108,3 @@ Classe Compra
 Interface Funcionario 
 - Função trabalhando(); 
 - Função descansando(); 
-
-Interface cliente 
-- Função comprando();  
