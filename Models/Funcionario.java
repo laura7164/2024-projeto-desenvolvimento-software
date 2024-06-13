@@ -1,12 +1,22 @@
 package Models;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Funcionario extends Pessoa implements InterfaceFuncionario {
    
     protected float salario;
     private int idFuncionario;
+    private List<LocalDateTime> pontosDeEntrada;
+    private List<LocalDateTime> pontosDeSaida;
+    private List<Compra> compras;
 
     public Funcionario(String nome, int idFuncionario) {
         super(nome);
         this.idFuncionario = idFuncionario;
+        this.pontosDeEntrada = new ArrayList<>();
+        this.pontosDeSaida = new ArrayList<>();
     }
 
     public float getSalario() {
@@ -24,5 +34,32 @@ public abstract class Funcionario extends Pessoa implements InterfaceFuncionario
     public void setIdFuncionario(int idFuncionario) {
         this.idFuncionario = idFuncionario;
     }
+
+    public List<LocalDateTime> getPontosDeEntrada() {
+        return pontosDeEntrada;
+    }
+
+    public List<LocalDateTime> getPontosDeSaida() {
+        return pontosDeEntrada;
+    }
     
+    public void baterPontoEntrada() {
+        LocalDateTime agora = LocalDateTime.now();
+        pontosDeEntrada.add(agora);
+        System.out.println(getNome() + " bateu o ponto de entrada às " + agora);
+    }
+
+    public void baterPontoSaida() {
+        LocalDateTime agora = LocalDateTime.now();
+        pontosDeSaida.add(agora);
+        System.out.println(getNome() + " bateu o ponto de saida às " + agora);
+    }
+
+    public void adicionarCompra(Compra compra) {
+        if (compras == null) {
+            compras = new ArrayList<>();
+        }
+        compras.add(compra);
+    }
+
 }
