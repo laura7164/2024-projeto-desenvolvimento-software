@@ -28,13 +28,4 @@ public class Gerente extends Funcionario {
         System.out.println("----------------------------");
     }
 
-    @Override
-    public void baterPontoEntrada() {
-        System.out.println("Batendo ponto de entrada");
-    }
-
-    @Override
-    public void baterPontoSaida() {
-        System.out.println("Batendo ponto de saida");
-    }
 }
