@@ -4,13 +4,11 @@ public class Cliente extends Pessoa {
 
     private String cpf;
     private String telefone;
-    private int cartaoFidelidade;
 
-    public Cliente(String nome, String cpf, String telefone, int cartaoFidelidade) {
+    public Cliente(String nome, String cpf, String telefone) {
         super(nome);
         this.cpf = cpf;
         this.telefone = telefone;
-        this.cartaoFidelidade = 0;
     }
     
     public String getCpf() {
@@ -29,21 +27,13 @@ public class Cliente extends Pessoa {
         this.telefone = telefone;
     }
 
-    public int getCartaoFidelidade() {
-        return cartaoFidelidade;
-    }
-
-    public void setCartaoFidelidade(int cartaoFidelidade) {
-        this.cartaoFidelidade = cartaoFidelidade;
-    }
-
     @Override
     public void exibirInfo() {
-        System.out.println("----------------------------");
+        System.out.println("===================================");
         System.out.println("Nome: " + getNome());
         System.out.println("CPF: " + getCpf());
         System.out.println("Telefone: " + getTelefone());
-        System.out.println("Pontos no cartão de fidelidade: " + getCartaoFidelidade());
-        System.out.println("----------------------------");
+        System.out.println("===================================");
     }
+
 }
