@@ -2,6 +2,7 @@ package Controllers;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Models.Caixa;
@@ -16,161 +17,224 @@ public class FuncionarioController {
     List<Funcionario> funcionarios = new ArrayList<Funcionario>();
 
     public void adicionarCaixa(){
-        System.out.print("Digite o nome do caixa: ");
-        String nome = leitor.nextLine();
+        try {
+            System.out.println(">> Adicionando um caixa...");
 
-        System.out.print("Digite o id do caixa: ");
-        int id = leitor.nextInt();
+            System.out.print("Digite o nome do caixa: ");
+            String nome = leitor.nextLine();
 
-        leitor.nextLine();
+            System.out.print("Digite o id do caixa: ");
+            String id = leitor.nextLine();
 
-        System.out.print("Digite o turno do caixa: ");
-        String turno = leitor.nextLine();
+            System.out.print("Digite o turno do caixa: ");
+            String turno = leitor.nextLine();
 
-        System.out.print("Digite o número do caixa: ");
-        int numeroCaixa = leitor.nextInt();
+            System.out.print("Digite o número do caixa: ");
+            int numeroCaixa = leitor.nextInt();
 
-        Funcionario novoCaixa = new Caixa(nome, id, turno, numeroCaixa, false);
-        funcionarios.add(novoCaixa);
-    }
+            leitor.nextLine();
 
-    public void adicionarRepositor(){
-        System.out.print("Digite o nome do repositor: ");
-        String nome = leitor.nextLine();
+            Funcionario novoCaixa = new Caixa(nome, id, turno, numeroCaixa, false);
+            funcionarios.add(novoCaixa);
 
-        System.out.print("Digite o id do repositor: ");
-        int id = leitor.nextInt();
-
-        leitor.nextLine();
-
-        System.out.print("Digite o setor do repositor: ");
-        String setor = leitor.nextLine();
-
-        Funcionario novoRepositor = new Repositor(nome, id, setor, 0);
-        funcionarios.add(novoRepositor);
-    }
-
-    public void adicionarGerente(){
-        System.out.print("Digite o nome do gerente: ");
-        String nome = leitor.nextLine();
-
-        System.out.print("Digite o id do gerente: ");
-        int id = leitor.nextInt();
-
-        leitor.nextLine();
-
-        System.out.print("Digite a equipe sob gerência: ");
-        String equipe = leitor.nextLine();
-
-        Funcionario novoGerente = new Gerente(nome, id, equipe);
-        funcionarios.add(novoGerente);
-    }
-
-    public void removerFuncionario(){
-        System.out.print("Digite o id do funcionário que deseja remover: ");
-        int idRemover = leitor.nextInt();
-
-        for(int i = 0; i < funcionarios.size(); i++){
-            if(idRemover == funcionarios.get(i).getIdFuncionario()){
-                funcionarios.remove(i);
-            }else{
-                System.out.println(">> Funcionário não encontrado!");
-            }
+            System.out.println(">> Caixa adicionado com sucesso!");
+        } catch (InputMismatchException e) {
+            System.out.println(">> Erro: tipo de dado incorreto. Por favor, insira os dados corretamente.");
+            leitor.nextLine();
+        } catch (Exception e) {
+            System.out.println(">> Erro: " + e.getMessage());
         }
     }
 
-    public void listarFuncionarios(){
+    public void adicionarRepositor(){
+        try {
+            System.out.println(">> Adicionando um repositor...");
+
+            System.out.print("Digite o nome do repositor: ");
+            String nome = leitor.nextLine();
+
+            System.out.print("Digite o id do repositor: ");
+            String id = leitor.nextLine();
+
+            System.out.print("Digite o setor do repositor: ");
+            String setor = leitor.nextLine();
+
+            Funcionario novoRepositor = new Repositor(nome, id, setor, 0);
+            funcionarios.add(novoRepositor);
+
+            System.out.println(">> Repositor adicionado com sucesso!");
+        } catch (InputMismatchException e) {
+            System.out.println(">> Erro: tipo de dado incorreto. Por favor, insira os dados corretamente.");
+            leitor.nextLine();
+        } catch (Exception e) {
+            System.out.println(">> Erro: " + e.getMessage());
+        }
+    }
+
+    public void adicionarGerente(){
+        try {
+            System.out.println(">> Adicionando um gerente...");
+
+            System.out.print("Digite o nome do gerente: ");
+            String nome = leitor.nextLine();
+
+            System.out.print("Digite o id do gerente: ");
+            String id = leitor.nextLine();
+
+            System.out.print("Digite a equipe sob gerência: ");
+            String equipe = leitor.nextLine();
+
+            Funcionario novoGerente = new Gerente(nome, id, equipe);
+            funcionarios.add(novoGerente);
+
+            System.out.println(">> Gerente adicionado com sucesso!");
+        } catch (InputMismatchException e) {
+            System.out.println(">> Erro: tipo de dado incorreto. Por favor, insira os dados corretamente.");
+            leitor.nextLine();
+        } catch (Exception e) {
+            System.out.println(">> Erro: " + e.getMessage());
+        }
+    }
+
+    public void removerFuncionario(){
+        System.out.println(">> Removendo um funcionário...");
+
+        System.out.print("Digite o id do funcionário que deseja remover: ");
+        String idFuncionarioRemover = leitor.nextLine();
+
+        boolean encontrado = false;
+
         for(int i = 0; i < funcionarios.size(); i++){
-            ((Pessoa) funcionarios).exibirInfo();
+            if(idFuncionarioRemover.equals(funcionarios.get(i).getIdFuncionario())){
+                funcionarios.remove(i);
+                encontrado = true;
+                System.out.println(">> Funcionário removido com sucesso!");
+                break;
+            }
+        }
+
+        if(!encontrado)
+            System.out.println(">> Funcionário não encontrado!");
+    }
+
+    public void listarFuncionarios(){
+        System.out.println("====== Lista de funcionários =========");
+        for(int i = 0; i < funcionarios.size(); i++){
+            ((Pessoa) funcionarios.get(i)).exibirInfo();
         }
     }
 
     public void buscarFuncionario(){
+        System.out.println(">> Buscando um funcionário...");
+
         System.out.print("Digite o id do funcionário que deseja buscar: ");
-        int idBuscar = leitor.nextInt();
+        String idFuncionarioBuscar = leitor.nextLine();
+
+        boolean encontrado = false;
 
         for(int i = 0; i < funcionarios.size(); i++){
-            if(idBuscar == funcionarios.get(i).getIdFuncionario()){
-                ((Pessoa) funcionarios).exibirInfo();
-            }else{
-                System.out.println(">> Funcionário não encontrado!");
+            if(idFuncionarioBuscar.equals(funcionarios.get(i).getIdFuncionario())){
+                ((Pessoa) funcionarios.get(i)).exibirInfo();
+                encontrado = true;
+                break;
             }
         }
+        if(!encontrado)
+            System.out.println(">> Funcionário não encontrado!");
     }
 
     public void atualizarFuncionario(){
-        System.out.println("Digite o id do funcionário que deseja atualizar: ");
-        int idAtualizar = leitor.nextInt();
+        System.out.println(">> Atualizando um funcionário...");
+
+        System.out.print("Digite o id do funcionário que deseja atualizar: ");
+        String idFuncionarioAtualizar = leitor.nextLine();
+
+        boolean encontrado = false;
 
         for(int i = 0; i < funcionarios.size(); i++){
-            if(idAtualizar == funcionarios.get(i).getIdFuncionario()){
+            if(idFuncionarioAtualizar.equals(funcionarios.get(i).getIdFuncionario())){
+                encontrado = true;
                 if(funcionarios.get(i).getClass() == Caixa.class){
+                    System.out.println("===================================");
                     System.out.println("[1] Turno");
                     System.out.println("[2] Número do caixa");
+                    System.out.println("===================================");
                     
                     System.out.print("Escolha uma opção: ");
                     int opcao = leitor.nextInt();
 
                     switch(opcao){
                         case 1:
-                            System.out.print("Deseja mudar para qual turno? ");
+                            System.out.println("===================================");
                             System.out.println("[1] Manhã");
                             System.out.println("[2] Noite");
-                            
+                            System.out.println("===================================");
+
+                            System.out.print("Deseja mudar para qual turno? ");
                             int opcao2 = leitor.nextInt();
 
                             if(opcao2 == 1){
-                                ((Caixa)funcionarios).setTurno("Manhã");
+                                ((Caixa)funcionarios.get(i)).setTurno("Manhã");
                             }
 
                             if(opcao2 == 2){
-                                ((Caixa)funcionarios).setTurno("Noite");
+                                ((Caixa)funcionarios.get(i)).setTurno("Noite");
                             }
+
+                            System.out.println(">> Turno atualizado com sucesso!");
                             break;
                         case 2:
                             System.out.print("Digite o novo número do caixa: ");
                             int novoNumCaixa = leitor.nextInt();
 
-                            ((Caixa)funcionarios).setNumeroCaixa(novoNumCaixa);
+                            ((Caixa)funcionarios.get(i)).setNumeroCaixa(novoNumCaixa);
+                            System.out.println(">> Número do caixa atualizado com sucesso!");
                             break;
                         default:
                             System.out.println(">> Opção inválida...");
                             break;
                     }
                } else if(funcionarios.get(i).getClass() == Repositor.class){
+                    System.out.println("===================================");
                     System.out.println("[1] Setor");
                     System.out.println("[2] Quantidade de produtos repostos");
+                    System.out.println("===================================");
 
                     System.out.print("Escolha uma opção: ");
                     int opcao = leitor.nextInt();
 
                     switch (opcao) {
                         case 1:
+                            leitor.nextLine();
                             System.out.print("Digite o novo setor: ");
                             String novoSetor = leitor.nextLine();
 
-                            ((Repositor)funcionarios).setSetor(novoSetor);
+                            ((Repositor)funcionarios.get(i)).setSetor(novoSetor);
+                            System.out.println(">> Setor atualizado com sucesso!");
                             break;
                         case 2:
                             System.out.print("Digite a quantidade atualizada de produtos repostos: ");
                             int novaQuantidadeProdutosRepostos = leitor.nextInt();
 
-                            ((Repositor)funcionarios).setProdutosRepostos(novaQuantidadeProdutosRepostos);
+                            ((Repositor)funcionarios.get(i)).setProdutosRepostos(novaQuantidadeProdutosRepostos);
+                            System.out.println(">> Quantidade de produtos repostos atualizada com sucesso!");
                             break;
                         default:
                             System.out.println(">> Opção inválida...");
                             break;
                     }
                } else if(funcionarios.get(i).getClass() == Gerente.class){
+                    leitor.nextLine();
                     System.out.print("Digite a nova equipe sob gerência: ");
                     String novaEquipe = leitor.nextLine();
 
-                    ((Gerente) funcionarios).setEquipe(novaEquipe);
+                    ((Gerente) funcionarios.get(i)).setEquipe(novaEquipe);
+                    System.out.println(">> Equipe atualizada com sucesso!");
                }
-            } else {
-                System.out.println(">> Funcionário não encontrado!");
             }
         }
+        if(!encontrado)
+            System.out.println(">> Funcionário não encontrado!");
     }
 
 }
