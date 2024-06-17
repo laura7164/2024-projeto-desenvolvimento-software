@@ -5,7 +5,7 @@ public class Repositor extends Funcionario {
     private String setor;
     private int produtosRepostos;
 
-    public Repositor(String nome, int idFuncionario, String setor, int produtosRepostos) {
+    public Repositor(String nome, String idFuncionario, String setor, int produtosRepostos) {
         super(nome, idFuncionario);
         this.salario = 1400;
         this.setor = setor;
@@ -30,13 +30,13 @@ public class Repositor extends Funcionario {
 
     @Override
     public void exibirInfo() {
-        System.out.println("----------------------------");
+        System.out.println("===================================");
         System.out.println("Nome: " + getNome());
         System.out.println("Salário: " + getSalario());
         System.out.println("Id do funcionário: " + getIdFuncionario());
         System.out.println("Setor: " + getSetor());
         System.out.println("Quantidade de produtos repostos: " + getProdutosRepostos());
-        System.out.println("----------------------------");
+        System.out.println("===================================");
     }
     
 }
