@@ -46,7 +46,12 @@ public class Produto {
     }
 
     public void verProduto(){
-        System.out.println(">> Nome: " + getNome() + " - R$ " + getPreco() + " - Quantidade: " + getQuantidade());
+        System.out.println("===================================");
+        System.out.println("Código: " + getCodigo());
+        System.out.println("Nome: " + getNome());
+        System.out.println("Preço: R$ " + getPreco());
+        System.out.println("Quantidade: " + getQuantidade());
+        System.out.println("===================================");
     }
 
 }
