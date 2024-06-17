@@ -5,65 +5,78 @@ import Models.Produto;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class AcaoController {
 
     Scanner leitor = new Scanner(System.in);
     
-    private Map<Integer, Funcionario> funcionarios = new HashMap<>();
-    private Map<Integer, Produto> estoque = new HashMap<>();
+    private List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+    private List<Produto> estoque = new ArrayList<Produto>();
+    private List<Produto> produtosComprados = new ArrayList<Produto>();
+
+    private EstoqueController estoqueController = new EstoqueController();
+
     private int contadorCompras = 0;
+    private String codigoProduto;
 
-    public void realizarCompra(){
+    public void realizarCompra() {
+        System.out.println(">> Realizando uma compra...");
+
         System.out.print("Digite o seu id: ");
-        int idFuncionarioBuscar = leitor.nextInt();
+        String idFuncionarioBuscar = leitor.nextLine();
 
-        Funcionario funcionario = funcionarios.get(idFuncionarioBuscar);
+        boolean encontrado = false;
 
-        if (funcionario != null) {
-            List<Produto> produtosSelecionados = new ArrayList<>();
-            while(true) {
-                System.out.println("\n=== Produtos Disponíveis ===");
-                    for (Produto produto : estoque.values()) {
-                        System.out.println(produto.getCodigo() + ": " + produto.getNome() + " - R$ " + produto.getPreco());
+        for (int i = 0; i < funcionarios.size(); i++) {
+            if (idFuncionarioBuscar.equals(funcionarios.get(i).getIdFuncionario())) {
+                encontrado = true;
+                do {
+                    estoqueController.listarProdutos();
+
+                    System.out.print("Digite o código do produto (ou 0 para finalizar): ");
+                    codigoProduto = leitor.nextLine();
+
+                    if (!codigoProduto.equals("0")) {
+                        Produto produto = buscarProdutoPorCodigo(codigoProduto);
+                        if (produto != null) {
+                            produtosComprados.add(produto);
+                            System.out.println(">> Produto adicionado: " + produto.getNome() + " - " + produto.getPreco());
+                        } else {
+                            System.out.println(">> Produto não encontrado!");
+                        }
                     }
-                System.out.println("============================");
-                
-                System.out.print("Digite o código do produto (ou 0 para finalizar): ");
-                String codigoProduto = leitor.nextLine();
+                } while (!codigoProduto.equals("0"));
 
-                if (codigoProduto.equals(0)) {
-                    break;
-                }
-
-                Produto produto = estoque.get(codigoProduto);
-
-                if (produto != null) {
-                    produtosSelecionados.add(produto);
-                    System.out.println(">> Produto adicionado: " + produto.getNome() + " - " + produto.getPreco());
-                } else {
-                    System.out.println(">> Produto não encontrado!");
-                }
+                float valorTotal = calcularValorTotal(produtosComprados);
+                Compra compra = new Compra(++contadorCompras, idFuncionarioBuscar, produtosComprados, valorTotal);
+                ((Funcionario) funcionarios.get(i)).adicionarCompra(compra);
+                System.out.println(">> Compra registrada com sucesso para " + funcionarios.get(i).getNome() + ". Valor total: " + valorTotal);
+                produtosComprados.clear();
             }
+        }
 
-            float valorTotal = calcularValorTotal(produtosSelecionados);
-            Compra compra = new Compra(++contadorCompras, idFuncionarioBuscar, produtosSelecionados, valorTotal);
-            funcionario.adicionarCompra(compra);
-            System.out.println(">> Compra registrada com sucesso para " + funcionario.getNome() + ". Valor total: " + valorTotal);
-
-        } else {
+        if (!encontrado) {
             System.out.println(">> Funcionário não encontrado!");
         }
     }
 
-    private float calcularValorTotal(List<Produto> produtosSelecionados) {
+    private Produto buscarProdutoPorCodigo(String codigo) {
+        for (Produto produto : estoque) {
+            if (produto.getCodigo().equals(codigo)) {
+                return produto;
+            }
+        }
+        return null;
+    }
+
+    private float calcularValorTotal(List<Produto> produtosComprados) {
         float valorTotal = 0;
-        for(Produto produto : produtosSelecionados) {
+
+        for(Produto produto : produtosComprados) {
             valorTotal += produto.getPreco();
         }
+
         return valorTotal;
     }
 
@@ -71,39 +84,56 @@ public class AcaoController {
         System.out.print("Digite o código do produto: ");
         String codigoBuscar = leitor.nextLine();
 
+        boolean encontrado = false;
+
         for(int i = 0; i < estoque.size(); i++){
             if(codigoBuscar.equals(estoque.get(i).getCodigo())){
-                ((Produto) estoque).setQuantidade(estoque.get(i).getQuantidade() - 1);
+                ((Produto) estoque.get(i)).setQuantidade(estoque.get(i).getQuantidade() - 1);
+                encontrado = true;
+                break;
             }
         }
+
+        if(!encontrado)
+            System.out.println(">> Produto não encontrado!");
     }
 
     public void baterPontoEntrada(){
         System.out.print("Digite o seu id: ");
-        int idBuscar = leitor.nextInt();
+        String idFuncionarioBuscar = leitor.nextLine();
+
+        boolean encontrado = false;
 
         for(int i = 0; i < funcionarios.size(); i++){
-            if(idBuscar == funcionarios.get(i).getIdFuncionario()){
+            if(idFuncionarioBuscar.equals(funcionarios.get(i).getIdFuncionario())){
                 funcionarios.get(i).baterPontoEntrada();
+                encontrado = true;
                 System.out.println("Ponto de entrada registrado com sucesso para " + funcionarios.get(i).getNome() + ".");
-            } else {
-                System.out.println(">> Funcionário não encontrado!");
+                break;
             }
         }
+
+        if(!encontrado)
+            System.out.println(">> Funcionário não encontrado!");
     }
 
     public void baterPontoSaida(){
         System.out.print("Digite o seu id: ");
-        int idFuncionario = leitor.nextInt();
+        String idFuncionarioBuscar = leitor.nextLine();
+
+        boolean encontrado = false;
 
         for(int i = 0; i < funcionarios.size(); i++){
-            if(idFuncionario == funcionarios.get(i).getIdFuncionario()){
+            if(idFuncionarioBuscar.equals(funcionarios.get(i).getIdFuncionario())){
                 funcionarios.get(i).baterPontoSaida();
+                encontrado = true;
                 System.out.println("Ponto de saida registrado com sucesso para " + funcionarios.get(i).getNome() + ".");
-            } else {
-                System.out.println(">> Funcionário não encontrado!");
-            }
+                break;
+            } 
         }
+
+        if(!encontrado)
+            System.out.println(">> Funcionário não encontrado!");
     }
     
 }
