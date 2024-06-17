@@ -7,12 +7,12 @@ import java.util.List;
 public abstract class Funcionario extends Pessoa implements InterfaceFuncionario {
    
     protected float salario;
-    private int idFuncionario;
+    private String idFuncionario;
     private List<LocalDateTime> pontosDeEntrada;
     private List<LocalDateTime> pontosDeSaida;
     private List<Compra> compras;
 
-    public Funcionario(String nome, int idFuncionario) {
+    public Funcionario(String nome, String idFuncionario) {
         super(nome);
         this.idFuncionario = idFuncionario;
         this.pontosDeEntrada = new ArrayList<>();
@@ -27,11 +27,11 @@ public abstract class Funcionario extends Pessoa implements InterfaceFuncionario
         this.salario = salario;
     }
 
-    public int getIdFuncionario() {
+    public String getIdFuncionario() {
         return idFuncionario;
     }
 
-    public void setIdFuncionario(int idFuncionario) {
+    public void setIdFuncionario(String idFuncionario) {
         this.idFuncionario = idFuncionario;
     }
 
