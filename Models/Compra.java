@@ -6,12 +6,12 @@ import java.util.List;
 public class Compra {
 
     private int idCompra;
-    private int idFuncionario;
+    private String idFuncionario;
     private List<Produto> produtos;
     private float valorTotal;
     private LocalDateTime dataHora;
 
-    public Compra(int idCompra, int idFuncionario, List<Produto> produtos, float valorTotal) {
+    public Compra(int idCompra, String idFuncionario, List<Produto> produtos, float valorTotal) {
         this.idCompra = idCompra;
         this.idFuncionario = idFuncionario;
         this.produtos = produtos;
@@ -27,11 +27,11 @@ public class Compra {
         this.idCompra = idCompra;
     }
 
-    public int getIdFuncionario() {
+    public String getIdFuncionario() {
         return idFuncionario;
     }
 
-    public void setIdFuncionario(int idFuncionario) {
+    public void setIdFuncionario(String idFuncionario) {
         this.idFuncionario = idFuncionario;
     }
 
