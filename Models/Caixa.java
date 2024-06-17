@@ -6,7 +6,7 @@ public class Caixa extends Funcionario {
     private int numeroCaixa;
     private boolean statusCaixa;
 
-    public Caixa(String nome, int idFuncionario, String turno, int numeroCaixa, boolean statusCaixa) {
+    public Caixa(String nome, String idFuncionario, String turno, int numeroCaixa, boolean statusCaixa) {
         super(nome, idFuncionario);
         this.salario = 1500;
         this.turno = turno;
@@ -50,13 +50,13 @@ public class Caixa extends Funcionario {
 
     @Override
     public void exibirInfo() {
-        System.out.println("----------------------------");
+        System.out.println("===================================");
         System.out.println("Nome: " + getNome());
         System.out.println("Salário: " + getSalario());
         System.out.println("Id do funcionário: " + getIdFuncionario());
         System.out.println("Turno: " + getTurno());
         System.out.println("Número do caixa: " + getNumeroCaixa());
-        System.out.println("----------------------------");
+        System.out.println("===================================");
     }
 
 }
