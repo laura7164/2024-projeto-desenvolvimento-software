@@ -1,5 +1,8 @@
 package Controllers;
 import java.util.List;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -84,6 +87,15 @@ public class ClienteController {
 
         if(!encontrado)
             System.out.println(">> Cliente não encontrado!");
+    }
+
+    public void salvarClientes() {
+        try (ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("clientes.save"))) {
+            os.writeObject(clientes);
+            System.out.println(">> Clientes salvos com sucesso!");
+        } catch (IOException e) {
+            System.out.println(">> Erro ao salvar clientes: " + e.getMessage());
+        }
     }
 
 }
