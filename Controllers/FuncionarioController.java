@@ -1,6 +1,9 @@
 package Controllers;
 
 import java.util.List;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -25,6 +28,11 @@ public class FuncionarioController {
 
             System.out.print("Digite o id do caixa: ");
             String id = leitor.nextLine();
+
+            if (existeId(id)) {
+                System.out.println(">> Erro: Já existe um funcionário com esse id.");
+                return;
+            }
 
             System.out.print("Digite o turno do caixa: ");
             String turno = leitor.nextLine();
@@ -56,6 +64,11 @@ public class FuncionarioController {
             System.out.print("Digite o id do repositor: ");
             String id = leitor.nextLine();
 
+            if (existeId(id)) {
+                System.out.println(">> Erro: Já existe um funcionário com esse id.");
+                return;
+            }
+
             System.out.print("Digite o setor do repositor: ");
             String setor = leitor.nextLine();
 
@@ -80,6 +93,11 @@ public class FuncionarioController {
 
             System.out.print("Digite o id do gerente: ");
             String id = leitor.nextLine();
+
+            if (existeId(id)) {
+                System.out.println(">> Erro: Já existe um funcionário com esse id.");
+                return;
+            }
 
             System.out.print("Digite a equipe sob gerência: ");
             String equipe = leitor.nextLine();
@@ -233,8 +251,29 @@ public class FuncionarioController {
                }
             }
         }
+        
+        salvarFuncionarios();
+
         if(!encontrado)
             System.out.println(">> Funcionário não encontrado!");
+    }
+
+    public void salvarFuncionarios() {
+        try (ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("funcionarios.save"))) {
+            os.writeObject(funcionarios);
+            System.out.println(">> Funcionários salvos com sucesso!");
+        } catch (IOException e) {
+            System.out.println(">> Erro ao salvar funcionários: " + e.getMessage());
+        }
+    }
+
+     private boolean existeId(String id) {
+        for (Funcionario funcionario : funcionarios) {
+            if (funcionario.getIdFuncionario().equals(id)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
