@@ -1,6 +1,8 @@
 package Models;
 
-public class Cliente extends Pessoa {
+import java.io.Serializable;
+
+public class Cliente extends Pessoa implements Serializable {
 
     private String cpf;
     private String telefone;
