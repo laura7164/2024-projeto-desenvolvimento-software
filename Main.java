@@ -36,7 +36,7 @@ public class Main {
                     menuCliente.executarMenuCliente();
                     break;
                 case 3:
-                    menuAcao.executarMenuAcao();
+                    menuAcao.executarMenuAcao(menuFuncionario.getListFuncionario(), menuEstoque.getListProduto(), menuCliente.getListCliente());
                     break;
                 case 4:
                     menuEstoque.executarMenuEstoque();
