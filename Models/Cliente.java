@@ -1,8 +1,6 @@
 package Models;
 
-import java.io.Serializable;
-
-public class Cliente extends Pessoa implements Serializable {
+public class Cliente extends Pessoa {
 
     private String cpf;
     private String telefone;
@@ -36,6 +34,11 @@ public class Cliente extends Pessoa implements Serializable {
         System.out.println("CPF: " + getCpf());
         System.out.println("Telefone: " + getTelefone());
         System.out.println("===================================");
+    }
+
+    @Override
+    public String toString(){
+        return "\nNome: " + getNome() + "\nCpf: " + getCpf() + "\nTelefone: " + getTelefone();
     }
 
 }
