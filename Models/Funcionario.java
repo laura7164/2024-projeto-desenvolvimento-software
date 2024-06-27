@@ -1,14 +1,11 @@
 package Models;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Funcionario extends Pessoa implements InterfaceFuncionario, Serializable {
+public abstract class Funcionario extends Pessoa implements InterfaceFuncionario {
 
-    private static final long serialVersionUID = 1L;
-   
     protected float salario;
     private String idFuncionario;
     private List<LocalDateTime> pontosDeEntrada;
@@ -64,5 +61,12 @@ public abstract class Funcionario extends Pessoa implements InterfaceFuncionario
         }
         compras.add(compra);
     }
+
+    @Override
+    public String toString(){
+        return "Nome: " + getNome() + "\nId: " + getIdFuncionario() + "\nSalário: " + getSalario();
+    }
+
+    public abstract void exibirInfo();
 
 }
