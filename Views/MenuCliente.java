@@ -1,7 +1,9 @@
 package Views;
-import java.util.Scanner;
 
+import java.util.List;
+import java.util.Scanner;
 import Controllers.ClienteController;
+import Models.Cliente;
 
 public class MenuCliente {
 
@@ -9,6 +11,10 @@ public class MenuCliente {
     private int opcao;
 
     ClienteController clienteController = new ClienteController();
+
+    public List<Cliente> getListCliente(){
+        return clienteController.getList();
+    }
 
     public void executarMenuCliente() {
         do {
@@ -18,7 +24,8 @@ public class MenuCliente {
             System.out.println("[3] Buscar cliente");
             System.out.println("[4] Remover cliente");
             System.out.println("[5] Salvar clientes em arquivo");
-            System.out.println("[6] Sair");
+            System.out.println("[6] Carregar clientes do arquivo");
+            System.out.println("[7] Sair");
             System.out.println("===================================");
 
             System.out.print("Escolha uma opção: ");
@@ -41,6 +48,9 @@ public class MenuCliente {
                     clienteController.salvarClientes();
                     break;
                 case 6:
+                    clienteController.carregarClientes();
+                    break;
+                case 7:
                     System.out.println(">> Voltando ao menu principal...");
                     break;
                 default:
@@ -48,7 +58,7 @@ public class MenuCliente {
                     break;
             }
            
-        } while(opcao != 6);
+        } while(opcao != 7);
     }
     
 }
