@@ -1,7 +1,9 @@
 package Views;
-import java.util.Scanner;
 
+import java.util.List;
+import java.util.Scanner;
 import Controllers.EstoqueController;
+import Models.Produto;
 
 public class MenuEstoque {
 
@@ -9,6 +11,10 @@ public class MenuEstoque {
     int opcao;
 
     EstoqueController estoqueController = new EstoqueController();
+
+    public List<Produto> getListProduto(){
+        return estoqueController.getList();
+    }
 
     public void executarMenuEstoque() {
         do {
@@ -19,7 +25,8 @@ public class MenuEstoque {
             System.out.println("[4] Atualizar produto");
             System.out.println("[5] Buscar produto");
             System.out.println("[6] Salvar produtos em arquivo");
-            System.out.println("[7] Sair");
+            System.out.println("[7] Carregar produtos do arquivo");
+            System.out.println("[8] Sair");
             System.out.println("===================================");
 
             System.out.print("Escolha uma opção: ");
@@ -45,13 +52,15 @@ public class MenuEstoque {
                     estoqueController.salvarProdutos();
                     break;
                 case 7:
+                    estoqueController.carregarProdutos();
+                case 8:
                     System.out.println(">> Voltando ao menu principal...");
                     break;
                 default:
                     System.out.println(">> Opção inválida...");
                     break;
             }
-        } while(opcao != 7);
+        } while(opcao != 8);
         
     }
 }
