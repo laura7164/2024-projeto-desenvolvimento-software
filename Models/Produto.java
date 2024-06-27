@@ -1,5 +1,8 @@
 package Models;
-public class Produto {
+
+import java.io.Serializable;
+
+public class Produto implements Serializable {
 
     private String nome;
     private String codigo;
@@ -44,14 +47,16 @@ public class Produto {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
-
-    public void verProduto(){
-        System.out.println("===================================");
+    
+    public void exibirInfo(){
         System.out.println("Código: " + getCodigo());
         System.out.println("Nome: " + getNome());
-        System.out.println("Preço: R$ " + getPreco());
+        System.out.println("Preço: " + getPreco());
         System.out.println("Quantidade: " + getQuantidade());
-        System.out.println("===================================");
     }
-
+    
+    @Override
+    public String toString(){
+        return "Código: " + getCodigo() + "\nNome: " + getNome() + "\nPreço: " + getPreco() + "\nQuantidade: " + getQuantidade();
+    }
 }
