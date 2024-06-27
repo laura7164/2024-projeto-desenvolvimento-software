@@ -1,7 +1,7 @@
 package Models;
 
 public class Caixa extends Funcionario {
-    
+
     private String turno;
     private int numeroCaixa;
     private boolean statusCaixa;
