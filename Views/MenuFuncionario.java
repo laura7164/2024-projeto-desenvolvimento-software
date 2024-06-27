@@ -1,7 +1,9 @@
 package Views;
-import java.util.Scanner;
 
+import java.util.List;
+import java.util.Scanner;
 import Controllers.FuncionarioController;
+import Models.Funcionario;
 
 public class MenuFuncionario {
 
@@ -9,6 +11,10 @@ public class MenuFuncionario {
     private int opcao, opcao2; 
 
     FuncionarioController funcionarioController = new FuncionarioController();
+
+    public List<Funcionario> getListFuncionario(){
+        return funcionarioController.getList();
+    }
 
     public void executarMenuFuncionario() {
         do {
@@ -19,7 +25,8 @@ public class MenuFuncionario {
             System.out.println("[4] Remover funcionário");
             System.out.println("[5] Atualizar funcionário");
             System.out.println("[6] Salvar funcionários em arquivo");
-            System.out.println("[7] Sair");
+            System.out.println("[7] Carregar funcionários do arquivo");
+            System.out.println("[8] Sair");
             System.out.println("===================================");
 
             System.out.print("Escolha uma opção: ");
@@ -73,13 +80,16 @@ public class MenuFuncionario {
                     funcionarioController.salvarFuncionarios();
                     break;
                 case 7:
+                    funcionarioController.carregarFuncionarios();
+                    break;
+                case 8:
                     System.out.println(">> Voltando ao menu principal...");
                     break;
                 default:
                     System.out.println(">> Opção inválida...");
                     break;
             }
-        } while(opcao != 7);
+        } while(opcao != 8);
         
     }
 }
