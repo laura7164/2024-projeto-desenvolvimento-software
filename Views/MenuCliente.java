@@ -23,9 +23,10 @@ public class MenuCliente {
             System.out.println("[2] Listar clientes");
             System.out.println("[3] Buscar cliente");
             System.out.println("[4] Remover cliente");
-            System.out.println("[5] Salvar clientes em arquivo");
-            System.out.println("[6] Carregar clientes do arquivo");
-            System.out.println("[7] Sair");
+            System.out.println("[5] Atualizar cliente");
+            System.out.println("[6] Salvar clientes em arquivo");
+            System.out.println("[7] Carregar clientes do arquivo");
+            System.out.println("[8] Sair");
             System.out.println("===================================");
 
             System.out.print("Escolha uma opção: ");
@@ -45,12 +46,14 @@ public class MenuCliente {
                     clienteController.removerCliente();
                     break;
                 case 5:
-                    clienteController.salvarClientes();
+                    clienteController.atualizarClientes();
                     break;
                 case 6:
-                    clienteController.carregarClientes();
+                    clienteController.salvarClientes();
                     break;
                 case 7:
+                    clienteController.carregarClientes();
+                case 8:
                     System.out.println(">> Voltando ao menu principal...");
                     break;
                 default:
@@ -58,7 +61,7 @@ public class MenuCliente {
                     break;
             }
            
-        } while(opcao != 7);
+        } while(opcao != 8);
     }
     
 }
