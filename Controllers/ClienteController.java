@@ -128,8 +128,8 @@ public class ClienteController {
                 clientes.get(i).setTelefone(novoTelefone);
 
                 System.out.println(">> Número do cliente atualizado!");
-
             }
+            salvarClientes();
         }
 
         if(!encontrado)
